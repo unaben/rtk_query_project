@@ -1,0 +1,40 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Ovaltine",
+      "quantity": 10,
+      "price": 1.2
+    },
+    {
+      "id": "2",
+      "name": "Walker",
+      "quantity": 20,
+      "price": 0.8
+    },
+    {
+      "id": "3",
+      "name": "Magerine",
+      "quantity": 6,
+      "price": 1.57
+    },
+    {
+      "id": "4",
+      "name": "Cornflakes",
+      "quantity": 24,
+      "price": 0.78
+    },
+    {
+      "name": "Cup_cakes",
+      "quantity": 14,
+      "price": 0.58,
+      "id": "5"
+    },
+    {
+      "id": "6",
+      "name": "Crips",
+      "quantity": 28,
+      "price": 0.5
+    }
+  ]
+}

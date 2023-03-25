@@ -1,58 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { FC } from "react";
+import "./App.css";
+import { MultiActionFunc } from "./components/MultiActionFunc";
+import ProductDetail from "./components/ProductDetail";
+import { Product } from "./model/product";
+import { useGetAllProductsQuery } from "./services/ProductsApi";
 
-function App() {
+const App: FC = () => {
+  const { data : products, error, isLoading, isFetching, isSuccess } =
+    useGetAllProductsQuery();
+  console.log(products);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      <h1>RTK Query</h1>
+      {isLoading && <h2>...Loading</h2>}
+      {isFetching && <h2>...isFetching</h2>}
+      {error && <h2>Something went wrong</h2>}
+      {isSuccess && (
+        <div>
+          {products?.map((product: Product) => {
+            return (
+              <div className="data" key={product.id}>
+                <span>{product.name}</span>
+                <span>
+                  <ProductDetail id={product.id} />
+                </span>
+              </div>
+            );
+          })}
+          <MultiActionFunc />
+          <div></div>
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default App;
